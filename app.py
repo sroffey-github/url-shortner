@@ -7,8 +7,6 @@ load_dotenv() # loading env vars
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
 
-print((username, password))
-
 # get the access token
 auth_res = requests.post("https://api-ssl.bitly.com/oauth/access_token", auth=(username, password))
 
@@ -42,10 +40,10 @@ my_data = {
 }
 # make the POST request to get shortened URL for `url`
 shorten_res = requests.post("https://api-ssl.bitly.com/v4/shorten", data=json.dumps(my_data), headers=headers, verify=False)
-print(shorten_res.text)
+
 if shorten_res.status_code == 200:
     # if response is OK, get the shortened URL
     link = json.loads(shorten_res.text)["link"]
     print("Shortened URL:", link)
 else:
-	print('[!] Error creating link')
+    print('[!] Error generating link, make sure your link has a valid schema (eg. https, http)')
