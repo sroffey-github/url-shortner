@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">URL Shortener</a>
+</nav>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        {% for msg in get_flashed_messages() %}
+            <p>{{msg}}</p>
+        {% endfor %}
+        <div class="card-header">
+          Enter URL to Shorten
+        </div>
+        <div class="card-body">
+          <form method="post">
+            <div class="form-group">
+              <label for="urlInput">URL:</label>
+              <input type="url" name="long_url" class="form-control" id="urlInput" placeholder="Enter URL">
+            </div>
+            <button type="submit" class="btn btn-primary">Shorten URL</button>
+            <br><br>
+            {% if short_url is defined %}
+                <p>Short Url: <a href={{short_url}} target="_blank">{{short_url}}</a></p>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
