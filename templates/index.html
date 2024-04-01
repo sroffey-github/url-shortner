@@ -6,6 +6,54 @@
   <title>URL Shortener</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+  .alert {
+    position: relative;
+    top: 10;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    line-height: 1.8;
+    border-radius: 5px;
+    cursor: hand;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 400;
+  }
+
+  .alertCheckbox {
+    display: none;
+  }
+
+  :checked + .alert {
+    display: none;
+  }
+
+  .alertText {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .alertClose {
+    float: right;
+    padding-top: 5px;
+    font-size: 10px;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .error {
+    background-color: #FEE;
+    border: 1px solid #EDD;
+    color: #A66;
+  }
+  </style>
 </head>
 <body>
 
@@ -18,11 +66,15 @@
     <div class="col-md-8 offset-md-2">
       <div class="card">
         {% for msg in get_flashed_messages() %}
-            <p>{{msg}}</p>
+        <label>
+          <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+          <div class="alert error">
+            <span class="alertClose">X</span>
+            <span class="alertText">{{msg}}
+            <br class="clear"/></span>
+          </div>
+        </label>
         {% endfor %}
-        <div class="card-header">
-          Enter URL to Shorten
-        </div>
         <div class="card-body">
           <form method="post">
             <div class="form-group">
